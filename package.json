@@ -1,0 +1,16 @@
+{
+  "name": "flytoday-low-price-tickets",
+  "version": "1.0.0",
+  "description": "A node.js service to find the lowest price tickets for a flight with a specific date, time and budget from Flytoday.ir website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Kaveh Shahedi",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "moment": "^2.29.3",
+    "puppeteer": "^13.7.0"
+  }
+}

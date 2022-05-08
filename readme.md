@@ -2,12 +2,13 @@
 This project checks the **Flytoday.ir** website to find the lowest price tickets based on the conditions you set. It also can send the results to your **Telegram Account** using a simple Bot, which you can easily create with *@BotFather*.
 
 ## Project Setup
-1. Initialize NPM
+1. Clone the project
 ```
-$ npm init
+$ git clone https://github.com/kavehshahedi/flytoday-low-price-tickets.git
 ```
 2. Install the required dependencies
 ```
+$ cd flytoday-low-price-tickets
 $ npm i
 ```
 3. Set the environment variables (*.env*)

@@ -6,18 +6,17 @@ const TelegramBot = require('./bot');
 
 const findTickets = async () => {
     //Check the flights of tomorrow (Based on Tehran timezone)
-    const date = moment().utcOffset('+0430').add(1, 'days').format('YYYY-MM-DD');
+    const date = moment().utcOffset('+0430').add(process.env.OFFSET_DAYS, 'days').format('YYYY-MM-DD');
     const url = `https://www.flytoday.ir/flight/search?departure=${process.env.FROM},1&arrival=${process.env.TO},1&departureDate=${date}&adt=1&chd=0&inf=0&cabin=1`;
 
     const browser = await puppeteer.launch({
-        headless: true,
-        executablePath: process.env.BROWSER_PATH,
+        headless: true
     });
 
     try {
         const page = await browser.newPage();
         await page.goto(url);
-        await page.waitForSelector('.c-flight-search-result', { timeout: 15000 }); //Wait untill the tickes are retrieved
+        await page.waitForSelector('.c-flight-search-result', { timeout: 30000 }); //Wait untill the tickes are retrieved
         page.on('console', (log) => console[log._type](log._text)); //Allow to see the logs in the console
 
         const result = await page.evaluate((input) => {
@@ -58,4 +57,6 @@ const findTickets = async () => {
     }
 }
 
-findTickets();
+setInterval(() => {
+    findTickets();
+}, 15 * 60 * 1000); //Check every 15 minutes
